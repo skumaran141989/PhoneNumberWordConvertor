@@ -14,13 +14,10 @@ public class Executor {
 	
 	private PhoneNumberToWordConvertor _phoneToWordConvertor;
 	private PhoneNumberProcessor _phoneNumberProcessor;
-	private String _projectPath;
 	
 	public static void main(String[] args) throws Exception
 	{
 		Executor executor = new Executor();
-		executor._projectPath = new File(".").getCanonicalPath();
-		System.out.println(executor._projectPath);
 		
 		CommandLineInterpretor cli = new CommandLineInterpretor();
 		cli.setArguements(args);

@@ -15,7 +15,6 @@ import src.utils.Constants;
 class WordDictionaryFromFileTest {
 
 	private WordDictionary _wordDictionary;
-	private String _inputFile;
 	private String _dictionaryFile;
 	
 	public WordDictionaryFromFileTest() throws IOException
@@ -24,14 +23,13 @@ class WordDictionaryFromFileTest {
 		
 		String projectPath = new File(".").getCanonicalPath();
 		
-		_inputFile = projectPath+"/src/test/resources/input.txt";
 		_dictionaryFile = projectPath+"/src/test/resources/dictionary.txt";
 	}
 	
 	@Test
 	void loadNotExistingDictionaryFile() {
 		 Exception exception = assertThrows(NumberFormatException.class, () -> {
-			 _wordDictionary.load(_dictionaryFile+"2");;
+			 _wordDictionary.load(_dictionaryFile+"2");
 		    });
 		 
 		 assertEquals(Constants.MISSING_DICTIONARY_FILE, exception.getMessage());
