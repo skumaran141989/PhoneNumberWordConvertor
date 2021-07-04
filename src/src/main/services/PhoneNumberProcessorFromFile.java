@@ -3,8 +3,8 @@ package src.main.services;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import src.main.models.PhoneNumber;
 import src.utils.Constants;
@@ -19,9 +19,9 @@ public class PhoneNumberProcessorFromFile implements PhoneNumberProcessor{
 	}
 	
 	@Override
-	public HashMap<String, List<String>> processPhoneNumbersFromFile(PhoneNumberToWordConvertor phoneNumberToWordConvertor) throws Exception
+	public HashMap<String, Set<String>> processPhoneNumbersFromFile(PhoneNumberToWordConvertor phoneNumberToWordConvertor) throws Exception
 	{
-		HashMap<String, List<String>> wordsForPhoneNumbers = new HashMap<String, List<String>>();
+		HashMap<String, Set<String>> wordsForPhoneNumbers = new HashMap<String, Set<String>>();
 		try (Scanner scanner = new Scanner(new File(_fileName)))
 		   {
 			   while (scanner.hasNextLine()) {

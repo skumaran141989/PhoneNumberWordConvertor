@@ -43,7 +43,7 @@ class CommandLineInterpretorTest {
 	void validateTestArguementWithExistingOptionsValue() throws Exception {
 		_commandLineInterpretor.setArguements(new String[] {"", "-d", _dictionaryFile, "-f", _inputFile } );
 		
-		assertEquals("dictionary.txt", _commandLineInterpretor.getStringValue("-d"));
+		assertEquals(_dictionaryFile, _commandLineInterpretor.getStringValue("-d"));
 	}
 	
 	@Test

@@ -1,8 +1,7 @@
 package src.main.entry;
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Set;
 
 import src.main.services.CommandLineInterpretor;
 import src.main.services.PhoneNumberProcessor;
@@ -30,7 +29,7 @@ public class Executor {
 		_phoneToWordConvertor = PhoneNumberToWordConvertor.getInstance();
 	}
 	
-	public HashMap<String, List<String>> executeCommand(CommandLineInterpretor cli) throws Exception
+	public HashMap<String, Set<String>> executeCommand(CommandLineInterpretor cli) throws Exception
 	{
 		if (cli.getStringValue("-d")==null)
 		{

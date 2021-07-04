@@ -2,11 +2,11 @@ package src.test.execution;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +27,8 @@ class ExecutorTest {
 		
 		String projectPath = new File(".").getCanonicalPath();
 				
-		_inputFile = projectPath+"/src/test/resources/input.txt";
-		_dictionaryFile = projectPath+"/src/test/resources/dictionary.txt";
+		_inputFile = projectPath+"/src/src/test/resources/input.txt";
+		_dictionaryFile = projectPath+"/src/src/test/resources/dictionary.txt";
 		_executor = new Executor();
 	}
 
@@ -38,11 +38,8 @@ class ExecutorTest {
 		
 		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
 		
-		Exception exception = assertThrows(Exception.class, () -> {
-			_executor.executeCommand(_cli);
-		    });
+		org.junit.jupiter.api.Assertions.assertDoesNotThrow(()->{_executor.executeCommand(_cli);});
 		 
-		 assertNull(exception);
 	}
 	
 	@Test
@@ -83,10 +80,9 @@ class ExecutorTest {
 	void validateExecutorTestWithAllArguements() throws Exception {
 		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
 		
-		HashMap<String, List<String>> result= _executor.executeCommand(_cli);
+		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
-		assertEquals(result.get("1-800-3569377").get(0), "1800FLOWERS");
-		assertEquals(result.get("225563").get(0), "CALLME");
+		assertTrue(result.get("1-800-3569377").contains("1800FLOWERS"));
+		assertTrue(result.get("225563").contains("CALLME"));
 	}
-
 }

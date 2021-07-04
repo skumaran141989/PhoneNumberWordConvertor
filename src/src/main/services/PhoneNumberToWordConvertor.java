@@ -1,6 +1,8 @@
 package src.main.services;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import src.main.models.PhoneNumber;
 import src.main.models.TrieNode;
@@ -11,7 +13,7 @@ public class PhoneNumberToWordConvertor {
 	
 	private WordDictionary _dictionary;
 	private NumberToLetterMapper _letterMap;
-	private List<String> _wordsForPhoneNumber;
+	
 	private static PhoneNumberToWordConvertor _phoneNumberToWordConvertor = new PhoneNumberToWordConvertor();
 	 
 	private PhoneNumberToWordConvertor() {
@@ -33,47 +35,63 @@ public class PhoneNumberToWordConvertor {
 		_letterMap = NumberToLetterMapperFactory.getNumberToLetterMapperFactory(NumberToLetterMapperStrategy);
 	}
 	
-	public List<String> getConvertedWords(PhoneNumber phoneNumber) {
-		
+	public Set<String> getConvertedWords(PhoneNumber phoneNumber) {
+		Set<String> _wordsForPhoneNumber = new HashSet<String>();
 	    char[] phoneNumberDigits = phoneNumber.getDigitsArray();
 	    int length = phoneNumberDigits.length;
 	    
 	    int currStartPos = 0;
-	    while(currStartPos < length-1)
-			for(int i=0; i<length; i++)
-			{
-				getMatchedStrings(i+currStartPos, 0, phoneNumberDigits, phoneNumberDigits, null);
-			}
+		for(int i=0; i<length; i++)
+		{
+		    while(i+currStartPos < length)
+		    {
+		    	getMatchedStrings(i+currStartPos, 0, phoneNumberDigits, phoneNumberDigits.clone(), null, _wordsForPhoneNumber);
+		    	currStartPos++;
+		    }
+		}
 		
 		return _wordsForPhoneNumber;
 	}
 	
-	private void getMatchedStrings(int staringDigitIndex, int level, char[] phoneNumberDigits, char[] output, TrieNode parentNode) {
-		
-		TrieNode[] nodes = null;
-		
+	private void getMatchedStrings(int staringDigitIndex, int level, char[] phoneNumberDigits, 
+			char[] output, TrieNode parentNode, Set<String> _wordsForPhoneNumber) {
 		if (level == 0)
 		{
 			List<Character> matchedCharacters = _letterMap.getAllEncodedCharacters(phoneNumberDigits[staringDigitIndex+level]);
 			int matchedCharactersLength = matchedCharacters.size();
 			for(int i=0; i<matchedCharactersLength; i++)
 			{
-			  nodes = _dictionary.getStartingNode(matchedCharacters.get(i)).getChildNodes();
+				parentNode = _dictionary.getStartingNode(matchedCharacters.get(i));
+				getMatchedStringFromParent(staringDigitIndex, level, phoneNumberDigits, output, parentNode, _wordsForPhoneNumber);
+			}
+		 }
+		
+		getMatchedStringFromParent(staringDigitIndex, level, phoneNumberDigits, output, parentNode, _wordsForPhoneNumber);
+	}
+	
+	private void getMatchedStringFromParent(int staringDigitIndex, int level, 
+			char[] phoneNumberDigits, char[] output, TrieNode parentNode, Set<String> _wordsForPhoneNumber)
+	{
+		TrieNode[] childNodes = null;
+		if(parentNode != null)
+		{
+			output[staringDigitIndex+level] = parentNode.getValue();
+			if(parentNode.getIsEnd()) {
+				_wordsForPhoneNumber.add(new String(output));
+				if((staringDigitIndex+level+1) < phoneNumberDigits.length)
+					getMatchedStrings(staringDigitIndex+level+1, 0, phoneNumberDigits, output.clone(), null, _wordsForPhoneNumber);		
+			}
+			if ((staringDigitIndex+level+1) < phoneNumberDigits.length )
+			{
+				childNodes = parentNode.getChildNodes();
+				List<Character> matchedNextCharacters = _letterMap.getAllEncodedCharacters(phoneNumberDigits[staringDigitIndex+level+1]);
+				if(childNodes != null)
+					for(TrieNode trieNode : childNodes)
+					{
+						if(trieNode!=null && matchedNextCharacters.contains(trieNode.getValue()))
+							getMatchedStrings(staringDigitIndex,level+1, phoneNumberDigits, output.clone(), trieNode, _wordsForPhoneNumber);
+					}
 			}
 		}
-		else
-			nodes = parentNode.getChildNodes();
-		
-		for(TrieNode trieNode : nodes)
-		{
-			output[staringDigitIndex+level] = trieNode.getValue();
-			if(trieNode.getIsEnd()) {
-				_wordsForPhoneNumber.add(output.toString());
-				if((staringDigitIndex+1) < phoneNumberDigits.length)
-					getMatchedStrings(staringDigitIndex+1, 0, phoneNumberDigits, output, null);
-			}
-			else 
-			  getMatchedStrings(staringDigitIndex,level+1, phoneNumberDigits, output, trieNode);
-		}			
 	}
 }

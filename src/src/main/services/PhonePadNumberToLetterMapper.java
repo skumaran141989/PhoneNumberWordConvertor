@@ -66,6 +66,9 @@ public class PhonePadNumberToLetterMapper implements NumberToLetterMapper {
 	
 	@Override
 	 public List<Character> getAllEncodedCharacters(Character number){
-		return phonePadLetterMap.get(number);
+		if (phonePadLetterMap.containsKey(number))
+		  return phonePadLetterMap.get(number);
+		
+		return new ArrayList<Character>();
 	 }
 }

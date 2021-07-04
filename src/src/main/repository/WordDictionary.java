@@ -23,7 +23,7 @@ public abstract class WordDictionary {
 	
 	protected void insert(String input)
 	{
-		if(rootNodes!=null)
+		if(rootNodes==null)
 	      rootNodes = new HashMap<Character, TrieNode>();
 		
 		  char startingChar = input.charAt(0);
@@ -32,21 +32,27 @@ public abstract class WordDictionary {
 		  if (rootNodes.containsKey(startingChar))
 			  trieNode = rootNodes.get(startingChar);
 		  else
+		  {
 			  trieNode.setValue(startingChar);
-		 
-			  int length = input.length();
-			  for (int level = 1; level < length; level++)
-		        {
-		            int index = input.charAt(level) - 'A';
-		            
-		            if (trieNode.getChildNode(index) == null)
-		            	trieNode.setChildNode(index, new TrieNode());
-		      
-		            trieNode = trieNode.getChildNode(index);
-		        }
-			  
-			  trieNode.setIsEnd(true);
 			  rootNodes.put(startingChar, trieNode);
+		  }
+	 
+		  int length = input.length();
+		  for (int level = 1; level < length; level++)
+	        {
+	            int index = input.charAt(level) - 'A';
+	            
+	            if (trieNode.getChildNode(index) == null)
+	            {
+	            	TrieNode childNode = new TrieNode();
+	            	childNode.setValue(input.charAt(level)); 
+	            	trieNode.setChildNode(index, childNode);
+	            }
+	      
+	            trieNode = trieNode.getChildNode(index);
+	        }
+		  
+		  trieNode.setIsEnd(true);
 	}
 }
 	

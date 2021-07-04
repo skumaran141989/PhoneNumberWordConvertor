@@ -30,7 +30,7 @@ public class WordDictionaryFromFile extends WordDictionary {
 	   {
 		   while (scanner.hasNextLine()) {
 			  String word = scanner.nextLine();
-			    insert(word);
+			    insert(word.toUpperCase());
 			  }
 	   } catch (FileNotFoundException e) {
 		 throw new Exception(Constants.MISSING_DICTIONARY_FILE);

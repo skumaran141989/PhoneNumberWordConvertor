@@ -1,9 +1,9 @@
 package src.main.services;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.Set;
 
 public interface PhoneNumberProcessor {
      
-	public HashMap<String, List<String>> processPhoneNumbersFromFile(PhoneNumberToWordConvertor phoneNumberToWordConvertor) throws Exception;
+	public HashMap<String, Set<String>> processPhoneNumbersFromFile(PhoneNumberToWordConvertor phoneNumberToWordConvertor) throws Exception;
 }

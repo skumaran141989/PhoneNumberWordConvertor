@@ -23,12 +23,12 @@ class WordDictionaryFromFileTest {
 		
 		String projectPath = new File(".").getCanonicalPath();
 		
-		_dictionaryFile = projectPath+"/src/test/resources/dictionary.txt";
+		_dictionaryFile = projectPath+"/src/src/test/resources/dictionary.txt";
 	}
 	
 	@Test
 	void loadNotExistingDictionaryFile() {
-		 Exception exception = assertThrows(NumberFormatException.class, () -> {
+		 Exception exception = assertThrows(Exception.class, () -> {
 			 _wordDictionary.load(_dictionaryFile+"2");
 		    });
 		 
