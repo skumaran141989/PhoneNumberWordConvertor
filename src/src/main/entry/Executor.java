@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import src.main.services.CommandLineInterpretor;
-import src.main.services.PhoneNumberProcessor;
+import src.main.services.PhoneNumberInputProcessor;
 import src.main.services.PhoneNumberProcessorFromFile;
 import src.main.services.PhoneNumberToWordConvertor;
 import src.utils.Constants;
@@ -12,7 +12,7 @@ import src.utils.Constants;
 public class Executor {
 	
 	private PhoneNumberToWordConvertor _phoneToWordConvertor;
-	private PhoneNumberProcessor _phoneNumberProcessor;
+	private PhoneNumberInputProcessor _phoneNumberProcessor;
 	
 	public static void main(String[] args) throws Exception
 	{

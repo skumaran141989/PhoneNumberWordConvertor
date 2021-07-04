@@ -1,4 +1,4 @@
-package src.test.repository;
+package src.test.services;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

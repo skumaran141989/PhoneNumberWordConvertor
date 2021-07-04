@@ -9,13 +9,14 @@ import java.util.Set;
 import src.main.models.PhoneNumber;
 import src.utils.Constants;
 
-public class PhoneNumberProcessorFromFile implements PhoneNumberProcessor{
+public class PhoneNumberProcessorFromFile implements PhoneNumberInputProcessor{
 
 	private String _fileName;
 	
 	public PhoneNumberProcessorFromFile(String inputFileName)
 	{
 		_fileName = inputFileName;
+		
 	}
 	
 	@Override

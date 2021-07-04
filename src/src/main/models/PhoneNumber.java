@@ -20,7 +20,7 @@ public class PhoneNumber {
 			{
 				_phoneNumber.add(phoneNumber.charAt(i));
 			}
-			else if ((currentChar>=97 && currentChar>=122) || (currentChar>=65 && currentChar>=90))
+			else if ((currentChar>=97 && currentChar<=122) || (currentChar>=65 && currentChar<=90))
 			  throw new Exception(Constants.INVALID_PHONE_NUMBER);
 		}
 	}

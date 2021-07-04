@@ -49,4 +49,9 @@ public class PhonePadNumberToLetterMapperTest {
 	public void getAllEncodedCharactersForExistingCharacter() {
        Assert.assertEquals(expectedNumberOfCharacters.intValue(), _numberToLetterMapper.getAllEncodedCharacters(inputCharacter).size());
 	}
+	
+	@Test
+	public void getEmptyListForEncodedCharactersForNonExistingCharacter() {
+       Assert.assertEquals(0, _numberToLetterMapper.getAllEncodedCharacters('0').size());
+	}
 }

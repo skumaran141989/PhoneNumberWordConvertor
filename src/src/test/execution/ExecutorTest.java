@@ -1,8 +1,10 @@
 package src.test.execution;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
 import java.util.HashMap;
@@ -38,7 +40,7 @@ class ExecutorTest {
 		
 		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
 		
-		org.junit.jupiter.api.Assertions.assertDoesNotThrow(()->{_executor.executeCommand(_cli);});
+		assertDoesNotThrow(()->{_executor.executeCommand(_cli);});
 		 
 	}
 	
@@ -82,7 +84,25 @@ class ExecutorTest {
 		
 		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
-		assertTrue(result.get("1-800-3569377").contains("1800FLOWERS"));
+		assertEquals(result.size(), 3);
+	}
+	
+	@Test
+	void validateExecutorTestWithAllArguementsWithValidConvertedWord() throws Exception {
+		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
+		
+		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
+		
 		assertTrue(result.get("225563").contains("CALLME"));
+	}
+	
+	@Test
+	void validateExecutorTestWithAllArguementsWithValidNonConvertedWord() throws Exception {
+		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
+		
+		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
+		
+		assertNotNull(result.get("12345"));
+		assertEquals(result.get("12345").size(), 0);
 	}
 }
