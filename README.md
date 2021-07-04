@@ -1,5 +1,5 @@
 
-This is a command line java application which will convert the given list of phone numbers into word representation.
+This is a CLI based java application which will convert the given list of phone numbers into word representation.
 
 Application execution requirements:
  JRE 1.8
