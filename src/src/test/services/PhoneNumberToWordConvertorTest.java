@@ -43,7 +43,7 @@ class PhoneNumberToWordConvertorTest {
 		
 		Set<String> result= _phoneNumberToWordConvertor.getConvertedWords(new PhoneNumber("18005282"));
 		
-		assertEquals(result.size(),1);
+		assertEquals(1, result.size());
 		assertTrue(result.contains("1800JAVA"));
 	}
 	
@@ -55,7 +55,7 @@ class PhoneNumberToWordConvertorTest {
 		
 		Set<String> result= _phoneNumberToWordConvertor.getConvertedWords(new PhoneNumber("180-052,8 2"));
 		
-		assertEquals(result.size(),1);
+		assertEquals(1, result.size());
 		assertTrue(result.contains("1800JAVA"));
 	}
 	
@@ -89,7 +89,7 @@ class PhoneNumberToWordConvertorTest {
 		
 		Set<String> result= _phoneNumberToWordConvertor.getConvertedWords(new PhoneNumber("12345"));
 		
-		assertEquals(result.size(),0);
+		assertEquals(0, result.size());
 	}
 	
 	@Test
@@ -99,7 +99,7 @@ class PhoneNumberToWordConvertorTest {
 		_phoneNumberToWordConvertor.setNumberToLetterMapper("PhonePad");
 		
         Set<String> result= _phoneNumberToWordConvertor.getConvertedWords(new PhoneNumber("1-800-3569377"));
-		assertEquals(result.size(),3);
+		assertEquals(3, result.size());
 		assertTrue(result.contains("1800FLOW377"));
 		assertTrue(result.contains("1800FLOWER7"));
 		assertTrue(result.contains("1800FLOWERS"));

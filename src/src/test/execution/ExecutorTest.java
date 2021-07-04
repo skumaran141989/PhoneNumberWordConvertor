@@ -84,7 +84,7 @@ class ExecutorTest {
 		
 		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
-		assertEquals(result.size(), 3);
+		assertEquals(3, result.size());
 	}
 	
 	@Test
@@ -103,6 +103,6 @@ class ExecutorTest {
 		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
 		assertNotNull(result.get("12345"));
-		assertEquals(result.get("12345").size(), 0);
+		assertEquals(0, result.get("12345").size());
 	}
 }
