@@ -15,7 +15,7 @@ Steps to execute:
       $ java "bin/src/main/Entry/Executor" -m "PhonePad" -i "<path-to-inputfile>/input.txt" -d "<path-to-dictionary-file>/dictionary.txt"
     
  CLI Options: 
-   "-m" - used for providing NumberToletter converter strategy. It is a mandatory parameter. If invalid converter mentioned then we would use PhonePad
+   "-m" - used for providing NumberToletter converter strategy. It is a mandatory parameter. If invalid converter is mentioned then we would use PhonePad
    "-i" - used for providing input file(test file) containing the phone numbers.
    "-d" - used for providing dictionary files(test file) containing bag of words.
  
