@@ -38,7 +38,7 @@ class ExecutorTest {
 	void executorTestWithAllArguements() throws Exception {
 
 		
-		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
+		_cli.setArguements(new String[] { "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
 		
 		assertDoesNotThrow(()->{_executor.executeCommand(_cli);});
 		 
@@ -46,7 +46,7 @@ class ExecutorTest {
 	
 	@Test
 	void executorTestWithMissingDictionaryFileArguement() throws Exception {
-		_cli.setArguements(new String[] {"", "-i", _inputFile, "-m", "PhonePad"});
+		_cli.setArguements(new String[] {"-i", _inputFile, "-m", "PhonePad"});
 		
 		Exception exception = assertThrows(Exception.class, () -> {
 			_executor.executeCommand(_cli);
@@ -57,7 +57,7 @@ class ExecutorTest {
 	
 	@Test
 	void executorTestWithMissingInputFileArguements() throws Exception {
-		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-m", "PhonePad"});
+		_cli.setArguements(new String[] { "-d", _dictionaryFile, "-m", "PhonePad"});
 		
 		Exception exception = assertThrows(Exception.class, () -> {
 			_executor.executeCommand(_cli);
@@ -69,7 +69,7 @@ class ExecutorTest {
 	@Test
 	void executorTestWithMissingNumberToLetterStrategyArguements() throws Exception {
 		
-		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile});
+		_cli.setArguements(new String[] {"-d", _dictionaryFile, "-i", _inputFile});
 		
 		Exception exception = assertThrows(Exception.class, () -> {
 			_executor.executeCommand(_cli);
@@ -80,16 +80,16 @@ class ExecutorTest {
 	
 	@Test
 	void validateExecutorTestWithAllArguements() throws Exception {
-		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
+		_cli.setArguements(new String[] {"-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
 		
 		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
-		assertEquals(3, result.size());
+		assertEquals(4, result.size());
 	}
 	
 	@Test
 	void validateExecutorTestWithAllArguementsWithValidConvertedWord() throws Exception {
-		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
+		_cli.setArguements(new String[] { "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
 		
 		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
@@ -98,7 +98,7 @@ class ExecutorTest {
 	
 	@Test
 	void validateExecutorTestWithAllArguementsWithValidNonConvertedWord() throws Exception {
-		_cli.setArguements(new String[] {"", "-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
+		_cli.setArguements(new String[] {"-d", _dictionaryFile, "-i", _inputFile, "-m", "PhonePad"});
 		
 		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
