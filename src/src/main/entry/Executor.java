@@ -26,13 +26,16 @@ public class Executor {
 		
 		Set<Entry<String, Set<String>>> resultEntries = result.entrySet();
 		
+		
 		for(Entry<String, Set<String>> resultEntry : resultEntries)
 		{
-			System.out.println(resultEntry.getKey());
+			System.out.println("Possible alphanumberic combinations for "+resultEntry.getKey()+" are:");
 			
 			Set<String> wordNumbers = resultEntry.getValue();
 			for(String wordNumber : wordNumbers)
-				System.out.println(wordNumber);
+				System.out.println("\t"+wordNumber);
+			
+			System.out.println();
 		}
 	}
 	

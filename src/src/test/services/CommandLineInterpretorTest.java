@@ -27,21 +27,21 @@ class CommandLineInterpretorTest {
 	
 	@Test
 	void setTestArguementWithAllOptionsTest() throws Exception {
-		_commandLineInterpretor.setArguements(new String[] {"", "-d", _dictionaryFile, "-f", _inputFile } );
+		_commandLineInterpretor.setArguements(new String[] {"-d", _dictionaryFile, "-f", _inputFile } );
 		
 		assertNotNull(_commandLineInterpretor.getStringValue("-d"));
 	}
 	
 	@Test
 	void setTestArguementWithMissingOptionsTest() throws Exception {
-		_commandLineInterpretor.setArguements(new String[] {"", "-d", _dictionaryFile, "-f", _inputFile } );
+		_commandLineInterpretor.setArguements(new String[] {"-d", _dictionaryFile, "-f", _inputFile } );
 		
 		assertNull(_commandLineInterpretor.getStringValue("-i"));
 	}
 	
 	@Test
 	void validateTestArguementWithExistingOptionsValue() throws Exception {
-		_commandLineInterpretor.setArguements(new String[] {"", "-d", _dictionaryFile, "-f", _inputFile } );
+		_commandLineInterpretor.setArguements(new String[] {"-d", _dictionaryFile, "-f", _inputFile } );
 		
 		assertEquals(_dictionaryFile, _commandLineInterpretor.getStringValue("-d"));
 	}
@@ -49,7 +49,7 @@ class CommandLineInterpretorTest {
 	@Test
 	void setTestArguementWithNoOptions() throws Exception {
 		Exception exception = assertThrows(Exception.class, () -> {
-			_commandLineInterpretor.setArguements(new String[] {"", "-d", "dictionary.txt", _inputFile } );
+			_commandLineInterpretor.setArguements(new String[] {"-d", "dictionary.txt", _inputFile } );
 		    });
 		 
 		 assertEquals(Constants.MISSING_CLI_OPTION, exception.getMessage());

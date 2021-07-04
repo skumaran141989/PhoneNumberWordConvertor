@@ -15,7 +15,7 @@ public class CommandLineInterpretor {
 	
 	public void setArguements(String[] args) throws Exception
 	{
-		int i = 1;
+		int i = 0;
 		
 		while(i < args.length)
 		{
