@@ -29,4 +29,4 @@ This application uses Trie Data Structure to create a dictionary of words provid
  
  Note: In future we can convert the same application into a micro service based application with better security, observability, reliability and scalilibity.
  
- Total time spent: 12 hrs.
+ Total time spent: 10 hrs.
