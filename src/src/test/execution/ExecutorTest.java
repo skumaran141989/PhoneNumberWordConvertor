@@ -93,7 +93,7 @@ class ExecutorTest {
 		
 		HashMap<String, Set<String>> result= _executor.executeCommand(_cli);
 		
-		assertTrue(result.get("225563").contains("CALLME"));
+		assertTrue(result.get("225563").contains("CALL-ME"));
 	}
 	
 	@Test

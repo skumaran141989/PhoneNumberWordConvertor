@@ -67,7 +67,7 @@ class PhoneNumberToWordConvertorTest {
 		
 		Set<String> result= _phoneNumberToWordConvertor.getConvertedWords(new PhoneNumber("2255637666"));
 		
-		assertTrue(result.contains("CALLMESOON"));
+		assertTrue(result.contains("CALL-ME-SOON"));
 	}
 	
 	@Test

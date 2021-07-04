@@ -59,7 +59,7 @@ public class PhoneNumberToWordConvertor {
 		{
 		    while(i+currStartPos < length)
 		    {
-		    	getMatchedStrings(i+currStartPos, 0, phoneNumberDigits, phoneNumberDigits.clone(), null, _wordsForPhoneNumber);
+		    	getMatchedStrings(i+currStartPos, 0, false, phoneNumberDigits, phoneNumberDigits.clone(), null, _wordsForPhoneNumber);
 		    	currStartPos++;
 		    }
 		}
@@ -67,7 +67,7 @@ public class PhoneNumberToWordConvertor {
 		return _wordsForPhoneNumber;
 	}
 	
-	private void getMatchedStrings(int staringDigitIndex, int level, char[] phoneNumberDigits, 
+	private void getMatchedStrings(int staringDigitIndex, int level, boolean continueWord, char[] phoneNumberDigits, 
 			char[] output, TrieNode parentNode, Set<String> _wordsForPhoneNumber) {
 		if (level == 0)
 		{
@@ -76,24 +76,32 @@ public class PhoneNumberToWordConvertor {
 			for(int i=0; i<matchedCharactersLength; i++)
 			{
 				parentNode = _dictionary.getStartingNode(matchedCharacters.get(i));
-				getMatchedStringFromParent(staringDigitIndex, level, phoneNumberDigits, output, parentNode, _wordsForPhoneNumber);
+				getMatchedStringFromParent(staringDigitIndex, level, continueWord, phoneNumberDigits, output, parentNode, _wordsForPhoneNumber);
 			}
 		 }
 		
-		getMatchedStringFromParent(staringDigitIndex, level, phoneNumberDigits, output, parentNode, _wordsForPhoneNumber);
+		getMatchedStringFromParent(staringDigitIndex, level, continueWord, phoneNumberDigits, output, parentNode, _wordsForPhoneNumber);
 	}
 	
-	private void getMatchedStringFromParent(int staringDigitIndex, int level, 
+	private void getMatchedStringFromParent(int staringDigitIndex, int level, boolean continueWord,
 			char[] phoneNumberDigits, char[] output, TrieNode parentNode, Set<String> _wordsForPhoneNumber)
 	{
 		TrieNode[] childNodes = null;
 		if(parentNode != null)
 		{
-			output[staringDigitIndex+level] = parentNode.getValue();
+			if(continueWord)
+			{
+				String word = new String(output);
+				word = word.substring(0,staringDigitIndex+level+(output.length-phoneNumberDigits.length))+"-"+word.substring(staringDigitIndex+level+(output.length-phoneNumberDigits.length), word.length());
+				output = word.toCharArray();
+			}
+			
+			output[staringDigitIndex+level+(output.length-phoneNumberDigits.length)] = parentNode.getValue();
+			
 			if(parentNode.getIsEnd()) {
 				_wordsForPhoneNumber.add(new String(output));
 				if((staringDigitIndex+level+1) < phoneNumberDigits.length)
-					getMatchedStrings(staringDigitIndex+level+1, 0, phoneNumberDigits, output.clone(), null, _wordsForPhoneNumber);		
+					getMatchedStrings(staringDigitIndex+level+1, 0, true, phoneNumberDigits, output.clone(), null, _wordsForPhoneNumber);		
 			}
 			if ((staringDigitIndex+level+1) < phoneNumberDigits.length )
 			{
@@ -103,7 +111,7 @@ public class PhoneNumberToWordConvertor {
 					for(TrieNode trieNode : childNodes)
 					{
 						if(trieNode!=null && matchedNextCharacters.contains(trieNode.getValue()))
-							getMatchedStrings(staringDigitIndex,level+1, phoneNumberDigits, output.clone(), trieNode, _wordsForPhoneNumber);
+							getMatchedStrings(staringDigitIndex,level+1, false, phoneNumberDigits, output.clone(), trieNode, _wordsForPhoneNumber);
 					}
 			}
 		}
