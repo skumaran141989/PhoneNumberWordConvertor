@@ -82,6 +82,19 @@ class PhoneNumberToWordConvertorTest {
 	}
 	
 	@Test
+	public void Test_getConvertedWordsWithValidNumberFullWordMultipleCombinations() throws Exception
+	{
+		_phoneNumberToWordConvertor.setDictionary(_dictionaryFile);
+		_phoneNumberToWordConvertor.setNumberToLetterMapper("PhonePad");
+		
+		Set<String> result= _phoneNumberToWordConvertor.getConvertedWords(new PhoneNumber("228"));
+		
+		assertEquals(2, result.size());
+		assertTrue(result.contains("BAT"));
+		assertTrue(result.contains("CAT"));
+	}
+	
+	@Test
 	public void Test_getConvertedWordsWithValidNumberNoPut() throws Exception
 	{
 		_phoneNumberToWordConvertor.setDictionary(_dictionaryFile);
