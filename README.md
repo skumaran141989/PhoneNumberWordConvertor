@@ -9,13 +9,17 @@ This is a CLI based java application which will convert the given list of phone 
 
    First compile the program using javac command.(classes are already compiled from Eclipse and bin folder is updated to GitHub repo)
     
-      $ javac "src/src/main/Entry/Executor.java" 
+      $ javac src/src/main/Entry/Executor.java
    
    Note: You need to compile the java files under the "src/src/main" folder.
    
-   Run the program using belowjava command:  
+   Run the program using below java command:  
    
-     $ java "bin/src/main/Entry/Executor" -m "PhonePad" -i "<path-to-inputfile>/input.txt" -d "<path-to-dictionary-file>/dictionary.txt"
+     $ java bin/src/main/Entry/Executor -d "<path-to-dictionary-file>" -m PhonePad -i <path-to-input-file>
+     
+     Alternatively:
+     
+     $ java -jar PhoneNumberConvertor.jar -d "<path-to-dictionary-file>" -m PhonePad -i <path-to-input-file>
     
   #### CLI Options: 
   
