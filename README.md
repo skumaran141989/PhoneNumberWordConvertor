@@ -10,6 +10,7 @@ Steps to execute:
  Frist compile the program using javac command.
       $ javac "src/src/main/Entry/Executor.java" (classes are already compiled from Eclipse and bin folder is updated to GitHub repo)
    Note: You need to compile the java files under the "src/src/main" folder.
+   
  Run the program using java command.
       $ java "bin/src/main/Entry/Executor" -m "PhonePad" -i "<path-to-inputfile>/input.txt" -d "<path-to-dictionary-file>/dictionary.txt"
     
