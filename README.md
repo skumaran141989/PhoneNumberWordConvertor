@@ -7,15 +7,17 @@ This is a CLI based java application which will convert the given list of phone 
 
 ### Steps to execute:
 
-   First compile the program using javac command.(classes are already compiled from Eclipse and bin folder is updated to GitHub repo)
+   First compile the program using javac command.
     
-      $ javac src/src/main/Entry/Executor.java
+      $ javac src/src/main/Entry/Executor.java  (compile all java files under src/src/main project folder)
+      
+      Note: Classes are already compiled from Eclipse into bin folder and updated to GitHub repo.
    
-   Note: You need to compile the java files under the "src/src/main" folder.
+   Note: You need to compile the java files under the "src/src/main" project folder.
    
-   Run the program using below java command:  
+   Run the program using below java command from "bin" project folder:  
    
-     $ java bin/src/main/Entry/Executor -d <path-to-dictionary-file> -m PhonePad -i <path-to-input-file>
+     $ java src.main.entry.Executor -d <path-to-dictionary-file> -m PhonePad -i <path-to-input-file>
      
    #### Alternatively:
      
