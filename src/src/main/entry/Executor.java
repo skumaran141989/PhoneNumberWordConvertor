@@ -1,11 +1,12 @@
 package src.main.entry;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import src.main.services.CommandLineInterpretor;
 import src.main.services.PhoneNumberInputProcessor;
-import src.main.services.PhoneNumberProcessorFromFile;
+import src.main.services.PhoneNumberInputProcessorFromFile;
 import src.main.services.PhoneNumberToWordConvertor;
 import src.utils.Constants;
 
@@ -21,7 +22,18 @@ public class Executor {
 		CommandLineInterpretor cli = new CommandLineInterpretor();
 		cli.setArguements(args);
 		
-		executor.executeCommand(cli);
+		HashMap<String, Set<String>> result = executor.executeCommand(cli);
+		
+		Set<Entry<String, Set<String>>> resultEntries = result.entrySet();
+		
+		for(Entry<String, Set<String>> resultEntry : resultEntries)
+		{
+			System.out.println(resultEntry.getKey());
+			
+			Set<String> wordNumbers = resultEntry.getValue();
+			for(String wordNumber : wordNumbers)
+				System.out.println(wordNumber);
+		}
 	}
 	
 	public Executor()
@@ -47,8 +59,10 @@ public class Executor {
 		_phoneToWordConvertor.setDictionary(cli.getStringValue("-d"));
 		_phoneToWordConvertor.setNumberToLetterMapper(cli.getStringValue("-m"));
 		
-		_phoneNumberProcessor = new PhoneNumberProcessorFromFile(cli.getStringValue("-i"));
+		_phoneNumberProcessor = new PhoneNumberInputProcessorFromFile();
 		
-		return _phoneNumberProcessor.processPhoneNumbersFromFile(_phoneToWordConvertor);
+	    _phoneNumberProcessor.processPhoneNumbersFromSource(cli.getStringValue("-i"));
+	    
+	    return _phoneToWordConvertor.processNumbersFromInputProcessor(_phoneNumberProcessor);
 	}
 }

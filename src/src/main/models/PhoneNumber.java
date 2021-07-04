@@ -8,9 +8,11 @@ import src.utils.Constants;
 public class PhoneNumber {
 	
 	private List<Character> _phoneNumber;
+	private String _actualPhoneNumber;
 	
 	public PhoneNumber(String phoneNumber) throws Exception
 	{
+		_actualPhoneNumber = phoneNumber;
 		_phoneNumber = new ArrayList<Character>();
 		
 		for (int i=0;i< phoneNumber.length(); i++)
@@ -32,5 +34,10 @@ public class PhoneNumber {
 			phoneNumber[i] = _phoneNumber.get(i);
 		
 	    return phoneNumber;
+	}
+	
+	public String getActualPhoneNumber()
+	{
+		return _actualPhoneNumber;
 	}
 }

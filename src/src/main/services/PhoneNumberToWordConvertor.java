@@ -1,5 +1,6 @@
 package src.main.services;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +34,19 @@ public class PhoneNumberToWordConvertor {
 	public void setNumberToLetterMapper(String NumberToLetterMapperStrategy)
 	{
 		_letterMap = NumberToLetterMapperFactory.getNumberToLetterMapperFactory(NumberToLetterMapperStrategy);
+	}
+	
+	public HashMap<String, Set<String>> processNumbersFromInputProcessor(PhoneNumberInputProcessor phoneNumberInputProcessor)
+	{
+		HashMap<String, Set<String>> wordsForPhoneNumbers = new HashMap<String, Set<String>>();
+		List<PhoneNumber> phoneNumbers  = phoneNumberInputProcessor.getPhonenNumbers();
+		
+		for(PhoneNumber phoneNumber:phoneNumbers)
+		{
+			wordsForPhoneNumbers.put(phoneNumber.getActualPhoneNumber(), getConvertedWords(phoneNumber));
+		}
+		
+		return wordsForPhoneNumbers;
 	}
 	
 	public Set<String> getConvertedWords(PhoneNumber phoneNumber) {
