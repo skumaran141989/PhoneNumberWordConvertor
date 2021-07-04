@@ -17,7 +17,7 @@ This is a CLI based java application which will convert the given list of phone 
    
      $ java bin/src/main/Entry/Executor -d "<path-to-dictionary-file>" -m PhonePad -i <path-to-input-file>
      
-     Alternatively:
+   #### Alternatively:
      
      $ java -jar PhoneNumberConvertor.jar -d "<path-to-dictionary-file>" -m PhonePad -i <path-to-input-file>
     
