@@ -15,11 +15,11 @@ This is a CLI based java application which will convert the given list of phone 
    
    Run the program using below java command:  
    
-     $ java bin/src/main/Entry/Executor -d "<path-to-dictionary-file>" -m PhonePad -i <path-to-input-file>
+     $ java bin/src/main/Entry/Executor -d <path-to-dictionary-file> -m PhonePad -i <path-to-input-file>
      
    #### Alternatively:
      
-     $ java -jar PhoneNumberConvertor.jar -d "<path-to-dictionary-file>" -m PhonePad -i <path-to-input-file>
+     $ java -jar bin/PhoneNumberConvertor.jar -d <path-to-dictionary-file> -m PhonePad -i <path-to-input-file>
     
   #### CLI Options: 
   
