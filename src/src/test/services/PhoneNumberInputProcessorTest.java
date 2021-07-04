@@ -44,7 +44,7 @@ class PhoneNumberInputProcessorTest {
 	@Test
     void ValidateWithValues() throws Exception {
 		_phoneNumberInputProcessor.processPhoneNumbersFromSource(_inputFile);
-		Assert.assertEquals(3, _phoneNumberInputProcessor.getPhonenNumbers().size());
+		Assert.assertEquals(4, _phoneNumberInputProcessor.getPhonenNumbers().size());
 	}
 
 }
