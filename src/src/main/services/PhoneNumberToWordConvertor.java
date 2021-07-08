@@ -54,14 +54,11 @@ public class PhoneNumberToWordConvertor {
 	    char[] phoneNumberDigits = phoneNumber.getDigitsArray();
 	    int length = phoneNumberDigits.length;
 	    
-	    int currStartPos = 0;
-		for(int i=0; i<length; i++)
-		{
-		    while(i+currStartPos < length)
-		    {
-		    	getMatchedStrings(i+currStartPos, 0, false, phoneNumberDigits, phoneNumberDigits.clone(), null, _wordsForPhoneNumber);
-		    	currStartPos++;
-		    }
+	    int i=0;
+
+	    for(i=0; i<length; i++)
+        {
+	    	getMatchedStrings(i, 0, false, phoneNumberDigits, phoneNumberDigits.clone(), null, _wordsForPhoneNumber);
 		}
 		
 		return _wordsForPhoneNumber;
